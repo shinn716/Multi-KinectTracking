@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefs>
+  <row1>3</row1>
+  <row2>1</row2>
+  <row3>2</row3>
+  <row4>0</row4>
+  <depthmax>652</depthmax>
+  <depthmin>562</depthmin>
+  <blobthreshold>0.12</blobthreshold>
+  <blur>2</blur>
+  <oscAutoStart>true</oscAutoStart>
+</Prefs>
