@@ -1,7 +1,7 @@
 # Multi-KinectTracking
   * Multi-Kinect by shinn  
   * using OpenKinect, Kinectv1  
-    Install http://zadig.akeo.ie/  
+    Install from http://zadig.akeo.ie/  
       
   * Max Number four Kinect.  
   * OSC port 12036  
