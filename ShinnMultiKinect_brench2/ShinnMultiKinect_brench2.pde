@@ -1,7 +1,17 @@
-import controlP5.*;
+/*-------------------------------
+  * Multi-Kinect by shinn
+  * using OpenKinect, Kinectv1
+    Install http://zadig.akeo.ie/
+    
+  * Max Number four Kinect.
+  * OSC port 12036
+  * OSC Ip 127.0.0.1
+  * OSC address /position
+  * XML path \data\setting.xml
+-------------------------------*/
+
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
-import blobDetection.*;
 
 Cp5p1 p1;
 Blobing myblobing = new Blobing();
@@ -61,6 +71,8 @@ void setup() {
 
   p1 = new Cp5p1(this);
   p1.init(1280-250);
+  
+  frameRate(60);
 }
 
 void draw() {

@@ -1,13 +1,21 @@
+import blobDetection.*;
+
 class Blobing {
 
   BlobDetection theBlobDetection;
+  OSCmanager osc;
   PImage blobimg;
+
 
   Blobing() {
     // Blank image
     blobimg = new PImage(80, 60);
     theBlobDetection = new BlobDetection(blobimg.width, blobimg.height);
     theBlobDetection.setPosDiscrimination(false);
+
+    // OSC
+    osc = new OSCmanager();
+    //osc.init();
   }
 
 
@@ -23,6 +31,8 @@ class Blobing {
     noFill();
     Blob b;
     EdgeVertex eA, eB;
+    ArrayList<float[]> sendDataArray = new ArrayList<float[]>();
+    
     for (int n=0; n<theBlobDetection.getBlobNb(); n++)
     {
       b=theBlobDetection.getBlob(n);
@@ -62,11 +72,36 @@ class Blobing {
 
           fill(255, 0, 0);
           textSize(12);
-          text(round( b.xMin*width)+","+round(b.yMin*height), (b.xMin*width), (b.yMin*height)-1);
+          text(round(b.xMin*width)+","+round(b.yMin*height), (b.xMin*width), (b.yMin*height)-1);
+
+          float[] temp = new float[2];
+          temp[0] = b.xMin*width;
+          temp[1] = b.yMin*height;
+          sendDataArray.add(temp);
+
+          //----OSC
+          if (oscauto) {
+
+            for (int k=0; k<sendDataArray.size(); k++) {
+              float t1 = sendDataArray.get(k)[0];
+              float t2 = sendDataArray.get(k)[1];
+              osc.Send("/position", t1, t2);
+              
+              for(int l=0; l<5; l ++)
+                text(osc.Show(), 1280-250, 20+30*(23+l)+10);
+            }
+            //osc.Send("/position", b.xMin*width, b.yMin*height);
+            //text(osc.Show(), 1280-250, 20+30*23+10);
+          }
+
           popMatrix();
+          
+          
         }
       }
     }
+    
+    sendDataArray.clear();
   }
 
   // ==================================================

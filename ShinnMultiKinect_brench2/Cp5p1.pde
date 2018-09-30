@@ -1,3 +1,5 @@
+import controlP5.*;
+
 class Cp5p1 {
 
   ControlP5 cp5;
